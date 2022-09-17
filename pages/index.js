@@ -1,16 +1,16 @@
-import { useTheme } from 'next-themes'
+import React, { useContext } from 'react';
+import { DarkModeContext } from '../contexts/darkMode';
+import styles from '../styles/color.module.css';
 
-const ChangeTheme = () => {
-  const { theme, setTheme } = useTheme()
+
+function Component() {
+  const { mode, toggleMode } = useContext(DarkModeContext);
 
   return (
-    <div>
-      Theme: {theme}
-      <br/>
-      <button onClick={() => setTheme('light')}>Light Mode</button>
-      <button onClick={() => setTheme('dark')}>Dark Mode</button>
+    <div className={mode==='light'?styles.light:styles.dark}>
+      <button onClick={toggleMode}>{mode} Mode</button>
     </div>
-  )
+  );
 }
 
-export default ChangeTheme
+export default Component;
